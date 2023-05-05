@@ -3,7 +3,7 @@ import pytest
 import os
 
 from api.application import Application
-from api.reqres.common import Common
+from config import Config
 
 
 @pytest.fixture(scope='session')
@@ -16,8 +16,8 @@ def base():
 def clear_test_reports_and_logs():
     """Декоратор по очистке каталогов logs и reports"""
 
-    for f in os.listdir(Common.DIRECTORY_TEST_REPORTS):
-        os.remove(os.path.join(Common.DIRECTORY_TEST_REPORTS, f))
+    for f in os.listdir(Config.DIRECTORY_TEST_REPORTS):
+        os.remove(os.path.join(Config.DIRECTORY_TEST_REPORTS, f))
 
-    for c in os.listdir(Common.DIRECTORY_LOGS):
-        os.remove(os.path.join(Common.DIRECTORY_LOGS, c))
+    for c in os.listdir(Config.DIRECTORY_LOGS):
+        os.remove(os.path.join(Config.DIRECTORY_LOGS, c))

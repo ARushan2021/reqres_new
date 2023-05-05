@@ -1,9 +1,8 @@
 """Негативный тест"""
-import pytest
 import allure
+import pytest
 
 from schemas.empty_request_body import EmptyRequestBody
-from api.reqres.common import Common
 
 
 @pytest.mark.usefixtures('clear_test_reports_and_logs')
@@ -16,6 +15,6 @@ from api.reqres.common import Common
 @allure.title('Неуспешный запрос информации о пользователе, неверный id')
 def test_user_not_found_v1(base, id_user):
 
-    response = base.api_v1.get_api(id_user=id_user, res_api=Common.RESOURCE_NOT_FOUND)
+    response = base.api_v1.get_api_unknown(id_user=id_user)
     base.asserts.assert_request(response=response, exp_status_code=404, json_schema=EmptyRequestBody.CURLY_BRACKETS)
 

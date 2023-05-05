@@ -2,11 +2,13 @@
 import datetime
 import os
 
+from config import Config
+
 
 class Logger:
     """Класс для создания и записи лог-файла"""
 
-    file_name = f'logs/log_{str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))}.log'
+    file_name = Config.DIRECTORY_AND_NAME_LOGS
 
     @classmethod
     def write_log_to_file(cls, data: str, ):

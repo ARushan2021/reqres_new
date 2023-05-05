@@ -16,6 +16,6 @@ from api.reqres.common import Common
 @allure.title('Не успешный вход в систему')
 def test_login_unsuccessful_v1(base, body_request):
 
-    response = base.api_v1.post_api(body_request, res_api=Common.RESOURCE_LOGIN)
+    response = base.api_v1.post_api_login(body_request)
     base.asserts.assert_request(response=response, exp_status_code=400, json_schema=PostUnseccessful)
 

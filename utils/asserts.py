@@ -1,5 +1,6 @@
 """Модуль с шагами по проверке"""
 import allure
+from config import Config
 
 
 class AssertApi:
@@ -50,7 +51,7 @@ class AssertApi:
         """
 
         time_response = response.elapsed.total_seconds()
-        assert time_response < 2, f'Ошибка! Время ответа на запрос превысило 2 сек. и составило: {time_response}'
+        assert time_response < Config.TIME_RESPONSE, f'Ошибка! Время ответа на запрос превысило 2 сек. и составило: {time_response}'
 
     @staticmethod
     def assert_request(response, exp_status_code, json_schema):

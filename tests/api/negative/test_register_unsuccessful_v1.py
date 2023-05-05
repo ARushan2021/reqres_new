@@ -16,6 +16,6 @@ from api.reqres.common import Common
 @allure.title('Неуспешная регистрация нового пользователя')
 def test_login_unsuccessful_v1(base, body_request):
 
-    response = base.api_v1.post_api(body_request, res_api=Common.RESOURCE_REGISTER)
+    response = base.api_v1.post_api_register(body_request)
     base.asserts.assert_request(response=response, exp_status_code=400, json_schema=PostUnseccessful)
 

@@ -6,7 +6,7 @@ class AssertApi:
     """Класс проверок для API"""
 
     @staticmethod
-    @allure.step('Шаг 2. Проверка статус кода')
+    @allure.step('Шаг. Проверка статус кода')
     def check_status_code(response, exp_status_code):
         """Метод проверки статус кода.
 
@@ -21,7 +21,7 @@ class AssertApi:
         assert int(status_code) == exp_status_code, msg
 
     @staticmethod
-    @allure.step('Шаг 3. Проверка схемы response body')
+    @allure.step('Шаг. Проверка схемы response body')
     def validate_response_body(response, json_schema):
         """Метод валидации json-схемы тела ответа
 
@@ -42,6 +42,7 @@ class AssertApi:
                 json_schema.parse_obj(response_json)
 
     @staticmethod
+    @allure.step('Шаг. Проверка времени ответа на запрос')
     def validate_time_response(response):
         """Метод для проверки времени ответа
 

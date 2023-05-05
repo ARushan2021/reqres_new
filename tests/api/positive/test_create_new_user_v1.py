@@ -11,15 +11,9 @@ from api.reqres.common import Common
 @pytest.mark.parametrize('body_request',
                          [f'{Common.REQUEST_BODY_POST}',
                           f'{Common.REQUEST_BODY_POST2}'])
+@allure.title('Регистрация нового пользователя')
 def test_single_user_v1(base, body_request):
-    """Позитивный тест. Создание нового пользователя.
 
-    Шаг 1. Отправка запроса. POST https://reqres.in/api/users/
-    Шаг 2. Проверка статус кода
-    Шаг 3. Проверка тела ответа
-    Шаг 4. Проверка времени ответа на запрос
-    """
-
-    response = base.api_v1.post_api_users(body_request)
+    response = base.api_v1.post_api(body_request, res_api=Common.RESOURCE_USERS)
     base.asserts.assert_request(response=response, exp_status_code=201, json_schema=Post)
 

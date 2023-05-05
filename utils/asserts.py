@@ -14,7 +14,6 @@ class AssertApi:
             response: полученный ответ
             exp_status_code: ожидаемый статус код
         """
-        # todo добавить шаг с allure или с логированием
 
         status_code = response.status_code
         msg = f'Статус код ответа "{status_code}" отличен от "{exp_status_code}"'

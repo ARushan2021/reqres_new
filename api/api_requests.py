@@ -13,7 +13,7 @@ class Request:
         self.cookies = {}
 
     def custom_request(self, method, url, params=None, data=None, headers=None, cookies=None) -> requests.Response:
-        """Кастомная функция по отправки запроса. todo добавить логирование и облагородить заголовки с куки
+        """Кастомная функция по отправки запроса.
         
         Args:
             method: Метод запроса (GET, POST, ...)

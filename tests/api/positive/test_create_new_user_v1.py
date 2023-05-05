@@ -7,7 +7,9 @@ from api.reqres.common import Common
 
 
 @pytest.mark.usefixtures('clear_test_reports_and_logs')
-@allure.epic('Позитивное тестирование портала "https://reqres.in/"')
+@allure.severity('CRITICAL')
+@allure.feature('Positive keys')
+@allure.epic('API Тестирование портала "https://reqres.in/"')
 @pytest.mark.parametrize('body_request',
                          [f'{Common.REQUEST_BODY_POST}',
                           f'{Common.REQUEST_BODY_POST2}'])

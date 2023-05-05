@@ -16,6 +16,5 @@ class Common:
     REQUEST_BODY_POST2 = '{"first_name": "Testers","email": "mus@hr.oom"}'
     REQUEST_BODY_UPDATE = '{"first_name": "Testers","second_name": "second"}'
     REQUEST_BODY_UPDATE2 = '{"first_name": "Testers","job": "IBS"}'
-    REQUEST_BODY_POST_NEGATIVE = '{"first_name": "morpheus", "email":, "ertet": "dgdfg"}'
-    REQUEST_BODY_POST_NEGATIVE2 = '{"first_name":, "email": "rt@yry", "ertet": "dgdfg"}'
+
 

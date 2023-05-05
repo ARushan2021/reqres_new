@@ -42,7 +42,7 @@ class ApiV1(Common):
 
     @allure.step('Шаг. DELETE запрос к API')
     def delete_api(self, id_user: str, res_api: str):
-        """Метод для отправки Post запроса
+        """Метод для отправки Delete запроса
 
         Args:
             id_user: id пользователя
@@ -56,7 +56,7 @@ class ApiV1(Common):
 
     @allure.step('Шаг. PATCH запрос к API')
     def patch_api(self, id_user: str, body_request: str, res_api: str):
-        """Метод для отправки Post запроса
+        """Метод для отправки Patch запроса
 
         Args:
             id_user: id пользователя
@@ -71,7 +71,7 @@ class ApiV1(Common):
 
     @allure.step('Шаг. PUT запрос к API')
     def put_api(self, id_user: str, body_request: str, res_api: str):
-        """Метод для отправки Post запроса
+        """Метод для отправки Put запроса
 
         Args:
             id_user: id пользователя

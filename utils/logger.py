@@ -1,23 +1,32 @@
+"""Модуль по логироанию запросов"""
 import datetime
 import os
 
 
-"""Запись логов к запросам"""
-
-
 class Logger:
+    """Класс для создания и записи лог-файла"""
+
     file_name = f'logs/log_{str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))}.log'
 
     @classmethod
     def write_log_to_file(cls, data: str, ):
-        """Создание и запись информации в файл лога"""
+        """Создание и запись информации в файл лога
+
+        Args:
+            data: данные для лог-файла
+        """
 
         with open(cls.file_name, "a", encoding="utf-8") as logger_file:
             logger_file.write(data)
 
     @classmethod
     def add_request(cls, request):
-        """Сбор информации по request"""
+        """Сбор информации по request
+
+        Args:
+            request: объект результата запроса
+
+        """
 
         test_name = os.environ.get("PYTEST_CURRENT_TEST")
 
@@ -34,7 +43,11 @@ class Logger:
 
     @classmethod
     def add_response(cls, response):
-        """Сбор информации по response"""
+        """Сбор информации по response
+
+        Args:
+            response: объект результата запроса
+        """
 
         headers_as_dict = dict(response.headers)
         cookies_as_dict = dict(response.cookies)
@@ -48,9 +61,11 @@ class Logger:
 
     @staticmethod
     def logging(response):
-        """Метод логирования ответов и запросов"""
+        """Метод логирования ответов и запросов
+
+        Args:
+            response: объект результата запроса
+        """
 
         Logger.add_request(request=response)
         Logger.add_response(response=response)
-
-

@@ -25,6 +25,9 @@ class BasePage:
             time: время в течение которого ищется локатор на странице
 
         """
+
         return WebDriverWait(self.driver, time).until(EC.presence_of_element_located(locator),
                                                       message=f"Не удается найти элемент по локатору {locator}")
+
+
 

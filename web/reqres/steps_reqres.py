@@ -19,9 +19,8 @@ class Steps(BasePage):
 
     @allure.step("Нажатие кнопки 'SINGLE USER'")
     def get_single_user(self):
-        #self.driver.execute_script("window.scrollTo(0, 500)")
-        #self.find_element(LocatorsReqres.SINGLE_USER_STATUS_CODE).click()
         self.find_element(LocatorsReqres.GET_SINGLE_USER).click()
+        self.driver.execute_script("window.scrollTo(0, 1000)")
 
     def assert_status_code(self):
         status_code = self.find_element(LocatorsReqres.SINGLE_USER_STATUS_CODE).text

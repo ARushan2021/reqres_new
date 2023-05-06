@@ -1,5 +1,4 @@
 """Модуль содержит все декораторы проекта"""
-import time
 
 import pytest
 import os
@@ -42,11 +41,5 @@ def driver():
 def screenshot(driver):
     """Декоратор для скриншота после каждой функции"""
 
-    #print('***screen***')
     yield
     allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG)
-    #print('***screen***')
-
-# def after_scenario(scenario):
-#     allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG)
-#     print('***screen***')

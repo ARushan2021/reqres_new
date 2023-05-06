@@ -10,7 +10,7 @@ from web.reqres.common import Common
 @allure.feature('Positive keys')
 @allure.epic('Web Тестирование портала "https://reqres.in/"')
 @allure.title("Получение информации о пользователе")
-def test_reqres_single_user(driver):
+def test_reqres_single_user(driver, screenshot):
 
     get_single_user = Steps(driver, Common.BASE_URL)
     get_single_user.open_page()

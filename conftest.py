@@ -32,19 +32,21 @@ def clear_test_reports_and_logs():
 def driver():
     """Декоратор для открытия страницы в браузере. И закрытия браузера после окончания сессии"""
 
-    driver = webdriver.Chrome("driver/chromedriver.exe")
+    driver = webdriver.Chrome(Config.DIRECTORY_DRIVER_CHROME)
     driver.maximize_window()
     yield driver
     driver.quit()
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope='function')
 def screenshot(driver):
     """Декоратор для скриншота после каждой функции"""
 
+    #print('***screen***')
     yield
     allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG)
+    #print('***screen***')
 
-
-def after_scenario(scenario):
-    screenshot(driver)
+# def after_scenario(scenario):
+#     allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG)
+#     print('***screen***')

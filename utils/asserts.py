@@ -1,7 +1,7 @@
 """Модуль с шагами по проверке"""
 import allure
 from config import Config
-from steps_web.base_page import BasePage
+from web.base_page import BasePage
 
 
 class AssertApi:

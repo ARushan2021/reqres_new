@@ -9,3 +9,4 @@ class Config:
     TIME_RESPONSE = 2
     DIRECTORY_AND_NAME_LOGS = f'logs/log_{str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))}.log'
     LOCATOR_SEARCH_TIME = 30
+

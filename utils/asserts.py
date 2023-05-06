@@ -1,6 +1,7 @@
 """Модуль с шагами по проверке"""
 import allure
 from config import Config
+from steps_web.base_page import BasePage
 
 
 class AssertApi:
@@ -8,38 +9,31 @@ class AssertApi:
 
     @staticmethod
     @allure.step('Шаг. Проверка статус кода')
-    def check_status_code(response, exp_status_code):
+    def check_status_code(status_code, exp_status_code):
         """Метод проверки статус кода.
 
         Args:
-            response: полученный ответ
+            status_code: полученный статус код
             exp_status_code: ожидаемый статус код
         """
 
-        status_code = response.status_code
         msg = f'Статус код ответа "{status_code}" отличен от "{exp_status_code}"'
         assert int(status_code) == exp_status_code, msg
 
     @staticmethod
     @allure.step('Шаг. Проверка схемы response body')
-    def validate_response_body(response, json_schema):
+    def validate_response_body(response_body, json_schema):
         """Метод валидации json-схемы тела ответа
 
         Args:
-            response: полученный ответ
+            response_body: тело полученного ответа
             json_schema: json-схема для валидации
         """
 
-        if len(response.text) < 3:
-            response_body = response.text
+        if isinstance(response_body, str):
             assert response_body == json_schema, f'Тело ответа не верное: {response_body}'
         else:
-            response_json = response.json()
-            if isinstance(response_json, list):
-                for item in response_json:
-                    json_schema.parse_obj(item)
-            else:
-                json_schema.parse_obj(response_json)
+            json_schema.parse_obj(response_body)
 
     @staticmethod
     @allure.step('Шаг. Проверка времени ответа на запрос')
@@ -66,7 +60,18 @@ class AssertApi:
             json_schema: json-схема для валидации
         """
 
-        AssertApi.check_status_code(response, exp_status_code)
-        AssertApi.validate_response_body(response, json_schema)
+        if len(response.text) < 3:
+            response_body = response.text
+        else:
+            response_body = response.json()
+
+        status_code = response.status_code
+
+        AssertApi.check_status_code(status_code, exp_status_code)
+        AssertApi.validate_response_body(response_body, json_schema)
         AssertApi.validate_time_response(response)
+
+    @staticmethod
+    def checking_heading(heading_site: str, exp_heading: str):
+        assert heading_site == exp_heading, f'Не верный заголовок сайта: *{heading_site}*!'
 

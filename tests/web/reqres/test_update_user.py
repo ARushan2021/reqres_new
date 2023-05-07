@@ -9,8 +9,8 @@ from web.reqres.common import Common
 @allure.severity('CRITICAL')
 @allure.feature('Positive keys')
 @allure.epic('Web Тестирование портала "https://reqres.in/"')
-@allure.title("Получение информации о пользователе")
-def test_reqres_single_user(driver, screenshot):
+@allure.title("Изменение всех параметров пользователя")
+def test_update_user(driver, screenshot):
 
-    get_single_user = TestStepsReqres(driver, Common.BASE_URL)
-    get_single_user.steps_get_single_user()
+    update_user = TestStepsReqres(driver, Common.BASE_URL)
+    update_user.steps_update_user()

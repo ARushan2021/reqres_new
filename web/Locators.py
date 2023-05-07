@@ -3,8 +3,14 @@ from selenium.webdriver.common.by import By
 
 class LocatorsReqres:
 
-    GET_SINGLE_USER = (By.XPATH, '//li[@data-id="users-single"]')
     TITLE = (By.CSS_SELECTOR, '.tagline:nth-child(1)')
-    SINGLE_USER_STATUS_CODE = (By.XPATH, '//span[@class="response-code"]')
-    SINGLE_USER_RESPONSE_BODY = (By.XPATH, '//pre[@data-key="output-response"]')
+    STATUS_CODE = (By.XPATH, '//span[@data-key="response-code"]')
+    RESPONSE_BODY = (By.XPATH, '//pre[@data-key="output-response"]')
+    LOADING = (By.XPATH, '//div[@data-key="spinner"]')
+
+    GET_SINGLE_USER = (By.XPATH, '//li[@data-id="users-single"]')
+    CREATE_NEW_USER = (By.XPATH, '//li[@data-id="post"]')
+    DELETE_USER = (By.XPATH, '//li[@data-id="delete"]')
+    UPDATE_USER = (By.XPATH, '//li[@data-id="put"]')
+    PATCH_UPDATE_USER = (By.XPATH, '//li[@data-id="patch"]')
 

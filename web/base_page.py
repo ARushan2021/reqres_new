@@ -2,6 +2,7 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from config import Config
+from web.Locators import LocatorsReqres
 
 
 class BasePage:
@@ -29,5 +30,6 @@ class BasePage:
         return WebDriverWait(self.driver, time).until(EC.presence_of_element_located(locator),
                                                       message=f"Не удается найти элемент по локатору {locator}")
 
-
-
+    def loading(self, locator, time=Config.LOCATOR_SEARCH_TIME):
+        return WebDriverWait(self.driver, time).until(EC.invisibility_of_element_located(locator),
+                                                      message=f'Страница не успела загрузиться!')

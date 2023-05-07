@@ -72,6 +72,7 @@ class AssertApi:
         AssertApi.validate_time_response(response)
 
     @staticmethod
-    def checking_heading(heading_site: str, exp_heading: str):
+    def assert_web_heading(heading_site: str, exp_heading: str):
         assert heading_site == exp_heading, f'Не верный заголовок сайта: *{heading_site}*!'
+
 

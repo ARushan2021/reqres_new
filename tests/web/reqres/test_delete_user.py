@@ -2,7 +2,7 @@ import allure
 import pytest
 
 from web.reqres.steps_reqres import TestStepsReqres
-from web.reqres.common import Common
+from web.reqres.common import ReqresCommon
 
 
 @pytest.mark.usefixtures('clear_test_reports_and_logs')
@@ -12,6 +12,6 @@ from web.reqres.common import Common
 @allure.title("Удаление пользователя")
 def test_delete_user(driver, screenshot):
 
-    delete_user = TestStepsReqres(driver, Common.BASE_URL)
+    delete_user = TestStepsReqres(driver, ReqresCommon.BASE_URL)
     delete_user.steps_delete_user()
 

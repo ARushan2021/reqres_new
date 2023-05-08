@@ -43,3 +43,9 @@ def screenshot(driver):
 
     yield
     allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG)
+
+
+
+
+
+

@@ -1,7 +1,6 @@
 """Модуль с шагами по проверке"""
 import allure
 from config import Config
-from web.base_page import BasePage
 
 
 class AssertApi:
@@ -11,7 +10,6 @@ class AssertApi:
     @allure.step('Шаг. Проверка статус кода')
     def check_status_code(status_code, exp_status_code):
         """Метод проверки статус кода.
-
         Args:
             status_code: полученный статус код
             exp_status_code: ожидаемый статус код
@@ -24,7 +22,6 @@ class AssertApi:
     @allure.step('Шаг. Проверка схемы response body')
     def validate_response_body(response_body, json_schema):
         """Метод валидации json-схемы тела ответа
-
         Args:
             response_body: тело полученного ответа
             json_schema: json-схема для валидации
@@ -39,7 +36,6 @@ class AssertApi:
     @allure.step('Шаг. Проверка времени ответа на запрос')
     def validate_time_response(response):
         """Метод для проверки времени ответа
-
         Args:
             response: полученный ответ
         """
@@ -53,7 +49,6 @@ class AssertApi:
             - статус кода
             - валидации json-схемы
             - проверка времени ответа
-
         Args:
             response: полученный ответ
             exp_status_code: ожидаемый статус код
@@ -72,7 +67,6 @@ class AssertApi:
         AssertApi.validate_time_response(response)
 
     @staticmethod
+    @allure.step("Проверка заголовка странички")
     def assert_web_heading(heading_site: str, exp_heading: str):
         assert heading_site == exp_heading, f'Не верный заголовок сайта: *{heading_site}*!'
-
-

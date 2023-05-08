@@ -21,4 +21,6 @@
 - pytest tests/api/positive/ -v -s --alluredir=./test_reports/
 - pytest tests/web/reqres/ -v -s --alluredir=./test_reports/
 - pytest tests/ --alluredir=./test_reports/
+- pytest tests/web/swagger/test_single_user.py -v -s --alluredir=./test_reports/
+
 *****

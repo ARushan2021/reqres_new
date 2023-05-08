@@ -2,7 +2,7 @@ import allure
 import pytest
 
 from web.reqres.steps_reqres import TestStepsReqres
-from web.reqres.common import Common
+from web.reqres.common import ReqresCommon
 
 
 @pytest.mark.usefixtures('clear_test_reports_and_logs')
@@ -12,5 +12,5 @@ from web.reqres.common import Common
 @allure.title("Получение информации о пользователе")
 def test_reqres_single_user(driver, screenshot):
 
-    get_single_user = TestStepsReqres(driver, Common.BASE_URL)
+    get_single_user = TestStepsReqres(driver, ReqresCommon.BASE_URL)
     get_single_user.steps_get_single_user()

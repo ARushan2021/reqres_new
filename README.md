@@ -17,10 +17,10 @@
 - allure-pytest 2.13.1
 *****
 - allure serve test_reports - формирование allure в html
-- pytest tests/api/negative/ -v -s --alluredir=./test_reports/
+- pytest tests/api/negative/test_login_unsuccessful_v1.py -v -s --alluredir=./test_reports/
 - pytest tests/api/positive/ -v -s --alluredir=./test_reports/
 - pytest tests/web/reqres/ -v -s --alluredir=./test_reports/
 - pytest tests/ --alluredir=./test_reports/
-- pytest tests/web/swagger/test_single_user.py -v -s --alluredir=./test_reports/
+- pytest tests/web/swagger/negative/test_login_unsuccessful_swagger.py -v -s --alluredir=./test_reports/
 
 *****

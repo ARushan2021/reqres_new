@@ -4,8 +4,8 @@ import allure
 from config import Config
 
 
-class AssertApi:
-    """Класс проверок для API"""
+class AssertTests:
+    """Класс проверок для Тестов"""
 
     @staticmethod
     @allure.step('Проверка статус кода')
@@ -63,9 +63,9 @@ class AssertApi:
 
         status_code = response.status_code
 
-        AssertApi.check_status_code(status_code, exp_status_code)
-        AssertApi.validate_response_body(response_body, json_schema)
-        AssertApi.validate_time_response(response)
+        AssertTests.check_status_code(status_code, exp_status_code)
+        AssertTests.validate_response_body(response_body, json_schema)
+        AssertTests.validate_time_response(response)
 
     @staticmethod
     @allure.step("Проверка заголовка странички")
@@ -88,8 +88,8 @@ class AssertApi:
                 api_response: ответ полученный на api запрос
                 web_response: список, содержащий статус код и тело ответа из web-странички
             """
-        AssertApi.assert_st_code_web_and_api(api_response, web_response)
-        AssertApi.assert_body_web_and_api(api_response, web_response)
+        AssertTests.assert_st_code_web_and_api(api_response, web_response)
+        AssertTests.assert_body_web_and_api(api_response, web_response)
 
     @staticmethod
     @allure.step("Проверка статус-кода")

@@ -1,7 +1,9 @@
+"""Модуль с локаторами"""
 from selenium.webdriver.common.by import By
 
 
 class LocatorsReqres:
+    """Локаторы для работы с reqres.ru"""
 
     TITLE = (By.CSS_SELECTOR, '.tagline:nth-child(1)')
     STATUS_CODE = (By.XPATH, '//span[@data-key="response-code"]')
@@ -16,6 +18,8 @@ class LocatorsReqres:
 
 
 class LocatorsSwaggerReqres:
+    """Локаторы для работы с swagger"""
+
     TITLE = (By.XPATH, '//h2[@class="title"]')
     TRY_IT_OUT_BUTTON = (By.CSS_SELECTOR, 'div.opblock-section-header > div.try-out > button')
     EXECUTE_BUTTON = (By.CSS_SELECTOR, 'div.execute-wrapper > button')
@@ -25,6 +29,8 @@ class LocatorsSwaggerReqres:
         (By.CSS_SELECTOR, 'td.response-col_description>div:nth-child(1)>div>div.copy-to-clipboard>button')
     COPY_RESP_BODY2 = \
         (By.CSS_SELECTOR, 'div:nth-child(2)>div>div.copy-to-clipboard>button')
+    LOADING_EXECUTE = (By.CSS_SELECTOR, 'div.loading-container>div.loading')
+    LOADING_BLOCK = (By.CSS_SELECTOR, 'div.no-margin>div>img.opblock-loading-animation')
 
     GET_SINGLE_USER = (By.CSS_SELECTOR, '#operations-default-get_users__id_ > div > button > svg')
     GET_SINGLE_USER_INPUT_PARAMETERS = (By.CSS_SELECTOR, 'td.parameters-col_description > input[type=text]')

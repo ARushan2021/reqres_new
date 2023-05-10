@@ -18,7 +18,8 @@ def base():
 
 @pytest.fixture(scope='session')
 def clear_test_reports_and_logs():
-    """Декоратор по очистке каталогов logs и reports"""
+    """Декоратор по очистке каталогов logs и test_reports
+    В каталоге test_reports оставляет файл environment.properties"""
 
     f = os.listdir(Config.DIRECTORY_TEST_REPORTS)
     f.remove('environment.properties')

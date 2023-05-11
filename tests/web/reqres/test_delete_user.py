@@ -10,8 +10,8 @@ from web.reqres.common import ReqresCommon
 @allure.feature('Positive keys')
 @allure.epic('Web Тестирование портала "https://reqres.in/"')
 @allure.title("Удаление пользователя")
-def test_delete_user(driver, screenshot):
+def test_delete_user(driver):
 
-    delete_user = TestStepsReqres(driver, ReqresCommon.BASE_URL)
+    delete_user = TestStepsReqres(driver)
     delete_user.steps_delete_user()
 

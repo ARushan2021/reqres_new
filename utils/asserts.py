@@ -60,6 +60,9 @@ class AssertTests:
             response_body = response.text
         else:
             response_body = response.json()
+        # resp = response.text
+        # len_resp_text = len(resp)
+        # response_body = resp if len_resp_text < 3 else response_body = response.json()
 
         status_code = response.status_code
 

@@ -13,6 +13,11 @@ from web.reqres.common import ReqresCommon
 class BaseStepsReqres(BasePage):
     """Класс с базовыми шагами по тестированию reqres.ru"""
 
+    def __init__(self, driver):
+        self.common = ReqresCommon()
+        self.locators = LocatorsReqres()
+        super(BaseStepsReqres, self).__init__(driver)
+
     @allure.step("Нажатие кнопки 'Запроса'")
     def click_api_method(self, locator_button):
         """Метод для нажатия нужного api-метода и скроллинг странички"""
@@ -27,59 +32,54 @@ class TestStepsReqres(BaseStepsReqres):
     def steps_get_single_user(self):
         """Метод для тестирования получения информации о пользователе"""
 
-        BasePage.go_to_site(self, base_url=ReqresCommon.BASE_URL)
-        BasePage.assert_title(self, exp_heading=ReqresCommon.EXP_HEADING, locator_title=LocatorsReqres.TITLE)
-        BaseStepsReqres.click_api_method(self, locator_button=LocatorsReqres.GET_SINGLE_USER)
-        BasePage.assert_web_page(self,
-                                 locator_state_code=LocatorsReqres.STATUS_CODE,
-                                 exp_status_code=200,
-                                 locator_response_body=LocatorsReqres.RESPONSE_BODY,
-                                 json_schema=Get)
+        self.go_to_site(base_url=self.common.BASE_URL)
+        self.assert_title(exp_heading=self.common.EXP_HEADING, locator_title=self.locators.TITLE)
+        self.click_api_method(locator_button=self.locators.GET_SINGLE_USER)
+        self.assert_web_page(locator_state_code=self.locators.STATUS_CODE,
+                             exp_status_code=200,
+                             locator_response_body=self.locators.RESPONSE_BODY,
+                             json_schema=Get)
 
     def steps_create_new_user(self):
         """Метод для тестирования создания нового пользователя"""
 
-        BasePage.go_to_site(self, base_url=ReqresCommon.BASE_URL)
-        BasePage.assert_title(self, exp_heading=ReqresCommon.EXP_HEADING, locator_title=LocatorsReqres.TITLE)
-        BaseStepsReqres.click_api_method(self, locator_button=LocatorsReqres.CREATE_NEW_USER)
-        BasePage.assert_web_page(self,
-                                 locator_state_code=LocatorsReqres.STATUS_CODE,
-                                 exp_status_code=201,
-                                 locator_response_body=LocatorsReqres.RESPONSE_BODY,
-                                 json_schema=Post)
+        self.go_to_site(base_url=self.common.BASE_URL)
+        self.assert_title(exp_heading=self.common.EXP_HEADING, locator_title=self.locators.TITLE)
+        self.click_api_method(locator_button=self.locators.CREATE_NEW_USER)
+        self.assert_web_page(locator_state_code=self.locators.STATUS_CODE,
+                             exp_status_code=201,
+                             locator_response_body=self.locators.RESPONSE_BODY,
+                             json_schema=Post)
 
     def steps_delete_user(self):
         """Метод для тестирования удаления пользователя"""
 
-        BasePage.go_to_site(self, base_url=ReqresCommon.BASE_URL)
-        BasePage.assert_title(self, exp_heading=ReqresCommon.EXP_HEADING, locator_title=LocatorsReqres.TITLE)
-        BaseStepsReqres.click_api_method(self, locator_button=LocatorsReqres.DELETE_USER)
-        BasePage.assert_web_page(self,
-                                 locator_state_code=LocatorsReqres.STATUS_CODE,
-                                 exp_status_code=204,
-                                 locator_response_body=LocatorsReqres.RESPONSE_BODY,
-                                 json_schema=EmptyRequestBody.EMPTY_STR)
+        self.go_to_site(base_url=self.common.BASE_URL)
+        self.assert_title(exp_heading=self.common.EXP_HEADING, locator_title=self.locators.TITLE)
+        self.click_api_method(locator_button=self.locators.DELETE_USER)
+        self.assert_web_page(locator_state_code=self.locators.STATUS_CODE,
+                             exp_status_code=204,
+                             locator_response_body=self.locators.RESPONSE_BODY,
+                             json_schema=EmptyRequestBody.EMPTY_STR)
 
     def steps_update_user(self):
         """Метод для тестирования обновления всего пользователя"""
 
-        BasePage.go_to_site(self, base_url=ReqresCommon.BASE_URL)
-        BasePage.assert_title(self, exp_heading=ReqresCommon.EXP_HEADING, locator_title=LocatorsReqres.TITLE)
-        BaseStepsReqres.click_api_method(self, locator_button=LocatorsReqres.UPDATE_USER)
-        BasePage.assert_web_page(self,
-                                 locator_state_code=LocatorsReqres.STATUS_CODE,
-                                 exp_status_code=200,
-                                 locator_response_body=LocatorsReqres.RESPONSE_BODY,
-                                 json_schema=PutPatch)
+        self.go_to_site(base_url=self.common.BASE_URL)
+        self.assert_title(exp_heading=self.common.EXP_HEADING, locator_title=self.locators.TITLE)
+        self.click_api_method(locator_button=self.locators.UPDATE_USER)
+        self.assert_web_page(locator_state_code=self.locators.STATUS_CODE,
+                             exp_status_code=200,
+                             locator_response_body=self.locators.RESPONSE_BODY,
+                             json_schema=PutPatch)
 
     def steps_partial_update_user(self):
         """Метод для тестирования частичного обновления пользователя"""
 
-        BasePage.go_to_site(self, base_url=ReqresCommon.BASE_URL)
-        BasePage.assert_title(self, exp_heading=ReqresCommon.EXP_HEADING, locator_title=LocatorsReqres.TITLE)
-        BaseStepsReqres.click_api_method(self, locator_button=LocatorsReqres.PATCH_UPDATE_USER)
-        BasePage.assert_web_page(self,
-                                 locator_state_code=LocatorsReqres.STATUS_CODE,
-                                 exp_status_code=200,
-                                 locator_response_body=LocatorsReqres.RESPONSE_BODY,
-                                 json_schema=PutPatch)
+        self.go_to_site(base_url=self.common.BASE_URL)
+        self.assert_title(exp_heading=self.common.EXP_HEADING, locator_title=self.locators.TITLE)
+        self.click_api_method(locator_button=self.locators.PATCH_UPDATE_USER)
+        self.assert_web_page(locator_state_code=self.locators.STATUS_CODE,
+                             exp_status_code=200,
+                             locator_response_body=self.locators.RESPONSE_BODY,
+                             json_schema=PutPatch)

@@ -1,7 +1,6 @@
 import allure
 import pytest
 
-from web.reqres.common import ReqresCommon
 from web.swagger_reqres.steps_swagger_reqres import TestStepsSwaggerReqres
 
 
@@ -13,8 +12,8 @@ from web.swagger_reqres.steps_swagger_reqres import TestStepsSwaggerReqres
 @pytest.mark.parametrize('user_id',
                          ['2',
                           '3'])
-def test_reqres_single_user_swagger(base, driver, screenshot, user_id):
-    get_single_user = TestStepsSwaggerReqres(driver, ReqresCommon.BASE_URL)
-    web_response = get_single_user.test_single_user(user_id)
+def test_single_user_swagger(base, driver, user_id):
+    web_response = TestStepsSwaggerReqres(driver).test_single_user(user_id)
+
     response = base.api_v1.get_api_users(user_id)
     base.asserts.assert_web_and_api(api_response=response, web_response=web_response)

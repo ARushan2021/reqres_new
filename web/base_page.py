@@ -2,6 +2,7 @@
 import json
 
 import allure
+from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -12,9 +13,8 @@ from utils.asserts import AssertTests
 class BasePage:
     """Класс для базовых метод на страницах"""
 
-    def __init__(self, driver, base_url):
-        self.driver = driver
-        self.base_url = base_url
+    def __init__(self, driver):
+        self.driver: WebDriver = driver
 
     @allure.step("Открытие странички")
     def go_to_site(self, base_url):
@@ -56,16 +56,7 @@ class BasePage:
         heading_site = self.find_element(locator_title).text
         AssertTests.assert_web_heading(heading_site, exp_heading)
 
-    def assert_title_swagger(self, exp_heading, locator_title):
-        """Обертка для проверки заголовка странички swagger
 
-            Args:
-                exp_heading: ожидаемый заголовок странички
-                locator_title: локатор для поиска заголовка
-        """
-        heading_site = self.find_element(locator_title).text
-        heading_site = heading_site[0: 10]
-        AssertTests.assert_web_heading(heading_site, exp_heading)
 
     def assert_web_page(self,
                         locator_state_code,
@@ -83,8 +74,9 @@ class BasePage:
         status_code = self.find_element(locator_state_code).text
         AssertTests.check_status_code(status_code=int(status_code), exp_status_code=exp_status_code)
         response_body = self.find_element(locator_response_body).text
-        if len(response_body) < 3:
-            response_body = response_body
-        else:
-            response_body = json.loads(response_body)
+        # if len(response_body) < 3:
+        #     response_body = response_body
+        # else:
+        #     response_body = json.loads(response_body)
+        response_body = response_body if len(response_body) < 3 else response_body = json.loads(response_body)
         AssertTests.validate_response_body(response_body=response_body, json_schema=json_schema)

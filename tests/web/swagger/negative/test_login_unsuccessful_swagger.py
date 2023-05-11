@@ -3,7 +3,6 @@ import pytest
 
 from api.reqres.common import Common
 
-from web.reqres.common import ReqresCommon
 from web.swagger_reqres.steps_swagger_reqres import TestStepsSwaggerReqres
 
 
@@ -15,9 +14,9 @@ from web.swagger_reqres.steps_swagger_reqres import TestStepsSwaggerReqres
 @pytest.mark.parametrize('body_request',
                          [f'{Common.REQUEST_BODY_POST}',
                           f'{Common.REQUEST_BODY_POST2}'])
-def test_login_unsuccessful(base, driver, screenshot, body_request):
+def test_login_unsuccessful(base, driver, body_request):
 
-    login_unsuccessful = TestStepsSwaggerReqres(driver, ReqresCommon.BASE_URL)
-    web_response = login_unsuccessful.test_login_unsuccessful(body_request)
+    web_response = TestStepsSwaggerReqres(driver).test_login_unsuccessful(body_request)
+
     response = base.api_v1.post_api_login(body_request)
     base.asserts.assert_web_and_api(api_response=response, web_response=web_response)

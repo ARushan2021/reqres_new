@@ -2,7 +2,6 @@ import allure
 import pytest
 
 from web.reqres.steps_reqres import TestStepsReqres
-from web.reqres.common import ReqresCommon
 
 
 @pytest.mark.usefixtures('clear_test_reports_and_logs')
@@ -10,7 +9,7 @@ from web.reqres.common import ReqresCommon
 @allure.feature('Positive keys')
 @allure.epic('Web Тестирование портала "https://reqres.in/"')
 @allure.title("Изменение всех параметров пользователя")
-def test_update_user(driver, screenshot):
+def test_update_user(driver):
 
-    update_user = TestStepsReqres(driver, ReqresCommon.BASE_URL)
+    update_user = TestStepsReqres(driver)
     update_user.steps_update_user()

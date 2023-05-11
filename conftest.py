@@ -40,7 +40,7 @@ def driver():
     driver.quit()
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def screenshot(driver):
     """Декоратор для скриншота после каждой функции"""
 

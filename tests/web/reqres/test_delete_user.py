@@ -2,7 +2,6 @@ import allure
 import pytest
 
 from web.reqres.steps_reqres import TestStepsReqres
-from web.reqres.common import ReqresCommon
 
 
 @pytest.mark.usefixtures('clear_test_reports_and_logs')

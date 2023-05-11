@@ -5,18 +5,18 @@ from schemas.empty_request_body import EmptyRequestBody
 from schemas.get import Get
 from schemas.post import Post
 from schemas.put_patch import PutPatch
-from web.Locators import LocatorsReqres
+from web.locators import LocatorsReqres
 from web.base_page import BasePage
-from web.reqres.common import ReqresCommon
+from web.common import ReqresCommon
 
 
 class BaseStepsReqres(BasePage):
     """Класс с базовыми шагами по тестированию reqres.ru"""
 
-    def __init__(self, driver):
-        self.common = ReqresCommon()
-        self.locators = LocatorsReqres()
-        super(BaseStepsReqres, self).__init__(driver)
+    # def __init__(self, driver):
+    #     self.common = ReqresCommon()
+    #     self.locators = LocatorsReqres()
+    #     super(BaseStepsReqres, self).__init__(driver)
 
     @allure.step("Нажатие кнопки 'Запроса'")
     def click_api_method(self, locator_button):

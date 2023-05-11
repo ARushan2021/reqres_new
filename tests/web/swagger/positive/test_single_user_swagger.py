@@ -14,6 +14,5 @@ from web.swagger_reqres.steps_swagger_reqres import TestStepsSwaggerReqres
                           '3'])
 def test_single_user_swagger(base, driver, user_id):
     web_response = TestStepsSwaggerReqres(driver).test_single_user(user_id)
-
     response = base.api_v1.get_api_users(user_id)
     base.asserts.assert_web_and_api(api_response=response, web_response=web_response)

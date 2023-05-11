@@ -42,7 +42,8 @@ class AssertTests:
         """
 
         time_response = response.elapsed.total_seconds()
-        assert time_response < Config.TIME_RESPONSE, f'Ошибка! Время ответа на запрос превысило 2 сек. и составило: {time_response}'
+        assert time_response < Config.TIME_RESPONSE, \
+            f'Ошибка! Время ответа на запрос превысило 2 сек. и составило: {time_response}'
 
     @staticmethod
     def assert_request(response, exp_status_code, json_schema):
@@ -56,16 +57,8 @@ class AssertTests:
             json_schema: json-схема для валидации
         """
 
-        if len(response.text) < 3:
-            response_body = response.text
-        else:
-            response_body = response.json()
-        # resp = response.text
-        # len_resp_text = len(resp)
-        # response_body = resp if len_resp_text < 3 else response_body = response.json()
-
+        response_body = response.text if len(response.text) < 3 else response.json()
         status_code = response.status_code
-
         AssertTests.check_status_code(status_code, exp_status_code)
         AssertTests.validate_response_body(response_body, json_schema)
         AssertTests.validate_time_response(response)

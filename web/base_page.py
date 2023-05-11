@@ -1,4 +1,4 @@
-"""Модуль с базовыми методам на вэб страницах"""
+"""Модуль с базовыми методами на вэб страницах"""
 import json
 
 import allure
@@ -56,8 +56,6 @@ class BasePage:
         heading_site = self.find_element(locator_title).text
         AssertTests.assert_web_heading(heading_site, exp_heading)
 
-
-
     def assert_web_page(self,
                         locator_state_code,
                         exp_status_code,
@@ -74,9 +72,5 @@ class BasePage:
         status_code = self.find_element(locator_state_code).text
         AssertTests.check_status_code(status_code=int(status_code), exp_status_code=exp_status_code)
         response_body = self.find_element(locator_response_body).text
-        # if len(response_body) < 3:
-        #     response_body = response_body
-        # else:
-        #     response_body = json.loads(response_body)
-        response_body = response_body if len(response_body) < 3 else response_body = json.loads(response_body)
+        response_body = response_body if len(response_body) < 3 else json.loads(response_body)
         AssertTests.validate_response_body(response_body=response_body, json_schema=json_schema)

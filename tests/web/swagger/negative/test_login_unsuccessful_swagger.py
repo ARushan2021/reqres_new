@@ -17,6 +17,5 @@ from web.swagger_reqres.steps_swagger_reqres import TestStepsSwaggerReqres
 def test_login_unsuccessful(base, driver, body_request):
 
     web_response = TestStepsSwaggerReqres(driver).test_login_unsuccessful(body_request)
-
     response = base.api_v1.post_api_login(body_request)
     base.asserts.assert_web_and_api(api_response=response, web_response=web_response)

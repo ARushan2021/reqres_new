@@ -5,22 +5,26 @@ from schemas.empty_request_body import EmptyRequestBody
 from schemas.get import Get
 from schemas.post import Post
 from schemas.put_patch import PutPatch
-from web.locators import LocatorsReqres
 from web.base_page import BasePage
-from web.common import ReqresCommon
+from web.reqres.common import ReqresCommon
+from web.reqres.locators import LocatorsReqres
 
 
 class BaseStepsReqres(BasePage):
     """Класс с базовыми шагами по тестированию reqres.ru"""
 
-    # def __init__(self, driver):
-    #     self.common = ReqresCommon()
-    #     self.locators = LocatorsReqres()
-    #     super(BaseStepsReqres, self).__init__(driver)
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.common = ReqresCommon()
+        self.locators = LocatorsReqres()
 
     @allure.step("Нажатие кнопки 'Запроса'")
     def click_api_method(self, locator_button):
-        """Метод для нажатия нужного api-метода и скроллинг странички"""
+        """Метод для нажатия нужного api-метода и скроллинг странички
+
+            Args:
+                locator_button: локатор кнопки
+        """
         self.find_element(locator_button).click()
         self.driver.execute_script("window.scrollTo(0, 1000)")
         self.loading(locator=LocatorsReqres.LOADING)

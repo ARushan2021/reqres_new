@@ -1,4 +1,5 @@
 """Модуль содержит все декораторы проекта"""
+import time
 
 import pytest
 import os
@@ -8,6 +9,9 @@ from api.application import Application
 from config import Config
 from allure_commons.types import AttachmentType
 from selenium import webdriver
+# from _pytest.nodes import Item
+# from _pytest.runner import CallInfo
+
 
 
 @pytest.fixture(scope='session')
@@ -32,7 +36,8 @@ def clear_test_reports_and_logs():
 
 @pytest.fixture(scope='session')
 def driver():
-    """Декоратор для открытия страницы в браузере. И закрытия браузера после окончания сессии"""
+    """Декоратор перед сессией - открывает страницу в браузере
+    после окончания сессии - производит скриншот и закрывает браузер."""
 
     driver = webdriver.Chrome(Config.DIRECTORY_DRIVER_CHROME)
     driver.maximize_window()
@@ -40,15 +45,16 @@ def driver():
     driver.quit()
 
 
-@pytest.fixture(scope='function', autouse=True)
-def screenshot(driver):
-    """Декоратор для скриншота после каждой функции"""
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def screenshot(item, call):
+    """Декоратор для скриншота после каждой WEB теста"""
 
-    yield
-    allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG)
+    outcome = yield
+    report = outcome.get_result()
+    driver = item.funcargs.get('driver')
 
-
-
+    if report.when == "call" and driver is not None:
+        allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG)
 
 
 

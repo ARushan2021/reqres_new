@@ -5,10 +5,17 @@ import pyperclip
 
 from utils.asserts import AssertTests
 from web.base_page import BasePage
+from web.swagger_reqres.common import SwaggerReqresCommon
+from web.swagger_reqres.locators import LocatorsSwaggerReqres
 
 
 class TestStepsSwaggerReqres(BasePage):
     """Класс с шагами по тестированию swagger reqres.ru"""
+
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.common_swag = SwaggerReqresCommon()
+        self.locators_swag = LocatorsSwaggerReqres()
 
     def assert_title_swagger(self, exp_heading, locator_title):
         """Обертка для проверки заголовка странички swagger

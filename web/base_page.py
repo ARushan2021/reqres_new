@@ -8,8 +8,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from config import Config
 from utils.asserts import AssertTests
-from web.locators import LocatorsSwaggerReqres, LocatorsReqres
-from web.common import ReqresCommon, SwaggerReqresCommon
 
 
 class BasePage:
@@ -17,10 +15,6 @@ class BasePage:
 
     def __init__(self, driver):
         self.driver: WebDriver = driver
-        self.common_swag = SwaggerReqresCommon()
-        self.locators_swag = LocatorsSwaggerReqres()
-        self.common = ReqresCommon()
-        self.locators = LocatorsReqres()
 
     @allure.step("Открытие странички")
     def go_to_site(self, base_url):

@@ -9,9 +9,10 @@ from api.application import Application
 from config import Config
 from allure_commons.types import AttachmentType
 from selenium import webdriver
+
+
 # from _pytest.nodes import Item
 # from _pytest.runner import CallInfo
-
 
 
 @pytest.fixture(scope='session')
@@ -46,15 +47,10 @@ def driver():
 
 
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)
-def screenshot(item, call):
-    """Декоратор для скриншота после каждой WEB теста"""
-
+def pytest_runtest_makereport(item):
     outcome = yield
     report = outcome.get_result()
     driver = item.funcargs.get('driver')
 
-    if report.when == "call" and driver is not None:
+    if report.when == 'call' and driver is not None:
         allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG)
-
-
-

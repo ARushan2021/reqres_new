@@ -1,18 +1,14 @@
 """Модуль содержит все декораторы проекта"""
-import time
 
-import pytest
 import os
-import allure
 
-from api.application import Application
-from config import Config
+import allure
+import pytest
 from allure_commons.types import AttachmentType
 from selenium import webdriver
 
-
-# from _pytest.nodes import Item
-# from _pytest.runner import CallInfo
+from api.application import Application
+from config import Config
 
 
 @pytest.fixture(scope='session')
@@ -48,6 +44,8 @@ def driver():
 
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)
 def pytest_runtest_makereport(item):
+    """Декоратор для скриншота в конце каждого web теста"""
+
     outcome = yield
     report = outcome.get_result()
     driver = item.funcargs.get('driver')
